@@ -74,6 +74,9 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * Create a new InstrumentationLoadTimeWeaver for the given ClassLoader.
+	 * 在实例化的过程中会对当前的 this.instrumentation 属性进行初始化，而初始化的代码如下：
+	 * this.instrumentation = getInstrumentation()，也就是说在 InstrumentationLoadTimeWeaver 例化后
+	 * 其属性 Instrumentation 已经被初始化为代表着当前虚拟机的实例了
 	 * @param classLoader the ClassLoader that registered transformers are supposed to apply to
 	 */
 	public InstrumentationLoadTimeWeaver(@Nullable ClassLoader classLoader) {
