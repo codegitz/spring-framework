@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
 public interface StatementCallback<T> {
 
 	/**
-	 * Gets called by {@code JdbcTemplate.execute} with an active JDBC
+	 * Gets called by {@code JdbcTemplate.execute}	 with an active JDBC
 	 * Statement. Does not need to care about closing the Statement or the
 	 * Connection, or about handling transactions: this will all be handled
 	 * by Spring's JdbcTemplate.

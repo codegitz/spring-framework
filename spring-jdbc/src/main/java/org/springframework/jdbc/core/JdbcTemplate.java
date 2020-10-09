@@ -912,6 +912,15 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		}));
 	}
 
+	/**
+	 * 使用 ArgTypePreparedStatementSetter 对参数和参数类型进行封装
+	 * 同时使用 SimplePreparedStatementCreator 对SQL语句进行封装
+	 * @param sql the SQL containing bind parameters
+	 * @param pss helper that sets bind parameters. If this is {@code null}
+	 * we run an update with static SQL.
+	 * @return
+	 * @throws DataAccessException
+	 */
 	@Override
 	public int update(String sql, @Nullable PreparedStatementSetter pss) throws DataAccessException {
 		return update(new SimplePreparedStatementCreator(sql), pss);
