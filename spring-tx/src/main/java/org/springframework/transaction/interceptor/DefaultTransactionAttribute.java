@@ -129,6 +129,12 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	 * (a corner case). For declarative transactions, we expect checked exceptions to be
 	 * intentionally declared as business exceptions, leading to a commit by default.
 	 * @see org.springframework.transaction.support.TransactionTemplate#execute
+	 *
+	 * 默认情况下 Spring 中的事务异常处理机制只对 Runti rneException Error 两种’情
+	 * 况感 趣，当然你可以通过扩展来改变，不过，我们最常用的还是使 事务提供的属性设置
+	 * 利用注解方式的使用，例如：
+	 * @Transact nal(propagation = Propagation REQUIRED rollbackFor = Exception class)
+	 *
 	 */
 	@Override
 	public boolean rollbackOn(Throwable ex) {

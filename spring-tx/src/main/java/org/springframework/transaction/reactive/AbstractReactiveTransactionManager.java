@@ -411,6 +411,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 				}
 				return processRollback(synchronizationManager, reactiveTx);
 			}
+			// 处理事务提交
 			return processCommit(synchronizationManager, reactiveTx);
 		});
 	}
@@ -427,8 +428,11 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 
 		AtomicBoolean beforeCompletionInvoked = new AtomicBoolean(false);
 
-		Mono<Object> commit = prepareForCommit(synchronizationManager, status)
+
+		Mono<Object> commit = prepareForCommit(synchronizationManager, status)// 预留
+				// 添加的 TransactionSynchronization 巾的对应方法的调用
 				.then(triggerBeforeCommit(synchronizationManager, status))
+				// 添加的 TransactionSynchronization 中的对应方法的调用
 				.then(triggerBeforeCompletion(synchronizationManager, status))
 				.then(Mono.defer(() -> {
 					beforeCompletionInvoked.set(true);

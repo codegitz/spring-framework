@@ -50,6 +50,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @see org.springframework.aop.framework.ProxyFactory
  */
 @SuppressWarnings("serial")
+//TransactionInterceptor 支撑着整个事务功能的架构，逻辑还是相对复杂的
 public class TransactionInterceptor extends TransactionAspectSupport implements MethodInterceptor, Serializable {
 
 	/**

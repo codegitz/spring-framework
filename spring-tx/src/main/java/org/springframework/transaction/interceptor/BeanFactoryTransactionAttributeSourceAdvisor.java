@@ -31,6 +31,15 @@ import org.springframework.lang.Nullable;
  * @see TransactionInterceptor
  * @see TransactionAttributeSourceAdvisor
  */
+
+/**
+ * BeanFactoryTransactionAttributeSourceAdvisor 作为 Advisor 的实现类，自然 遵从 Advisor
+ * 的处理方式，当代理被调用时会调用这个类的增强方法，也就是此 bean的Advise 又因为在
+ * 解析事务定义标签时我们把 TransactionInterceptor 类型的 bean 注入到了 BeanFactory
+ * TransactionAttributeSourceAdvisor 中，所以，在调用事务增强器增强的代理类时会首先执行
+ * TransactionInterceptor 进行增强，同时，也就是在 TransactionInterceptor 类中的 invoke 方法中完
+ * 成了事务的逻辑
+ */
 @SuppressWarnings("serial")
 public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFactoryPointcutAdvisor {
 
